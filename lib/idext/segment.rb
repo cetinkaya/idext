@@ -36,8 +36,8 @@ end
 
 
 module Idext
-  # PixelMatrix is a matrix of pixels
-  class PixelMatrix
+  # Segment is a matrix of pixels
+  class Segment
     def initialize(pixels, nof_rows)
       @pixels = pixels
       @nof_rows = nof_rows
