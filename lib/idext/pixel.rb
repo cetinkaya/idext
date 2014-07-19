@@ -16,7 +16,6 @@
 # along with Idext.  If not, see <http://www.gnu.org/licenses/>.
 
 
-require "rubygems"
 require "RMagick"
 
 include Magick
