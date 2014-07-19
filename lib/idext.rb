@@ -17,14 +17,15 @@
 
 
 require "idext/version"
+require "idext/dataset"
 
 def Idext.extract_data_from_images(dir, cdir,
                                    segment_width, segment_height,
                                    data_separator,
                                    output_filename, with_column_names)
-  @dataset = Dataset.new(dir, cdir,
-                         segment_width, segment_height,
-                         data_separator,
-                         output_filename, with_column_names)
+  @dataset = Idext::Dataset.new(dir, cdir,
+                    	        segment_width, segment_height,
+                                data_separator,
+                                output_filename, with_column_names)
   @dataset.generate
 end

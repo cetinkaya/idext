@@ -178,22 +178,22 @@ module Idext
         "white" => 0}
       
       @pixels.each.map{|pixel| pixel.rgb}.each do |color|
-        color_key = "white"
-        if color[0] > 200 and color[1] < 20 and color[2] < 20
+        color_key = nil
+        if color[0] > 150 and color[1] < 80 and color[2] < 80
           color_key = "red"
-        elsif color[0] < 20 and color[1] > 200 and color[2] < 20
+        elsif color[0] < 80 and color[1] > 150 and color[2] < 80
           color_key = "green"
-        elsif color[0] < 20 and color[1] < 20 and color[2] > 200
+        elsif color[0] < 80 and color[1] < 80 and color[2] > 150
           color_key = "blue"
-        elsif color[0] < 20 and color[1] < 20 and color[2] < 20
+        elsif color[0] < 80 and color[1] < 80 and color[2] < 80
           color_key = "black"
-        elsif color[0] > 200 and color[1] > 200 and color[2] > 200
+        elsif color[0] > 150 and color[1] > 150 and color[2] > 150
           color_key = "white"
         end
-        color_counts[color_key] += 1
+        color_counts[color_key] += 1 if color_key
       end
       
-      max_key = "red"
+      max_key = nil
       max_count = 0
       color_counts.each_pair do |key, value|
         if color_counts[key] >= max_count
@@ -202,7 +202,11 @@ module Idext
         end
       end
       
-      class_numbers[max_key]
+      if max_key
+        class_numbers[max_key] 
+      else
+        -1 # no class can be assigned
+      end
     end
   end
 end

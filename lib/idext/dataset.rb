@@ -42,7 +42,7 @@ module Idext
       if (cdir)
         @with_classes = true
         class_image_filenames = filenames_in(cdir)
-        @class_images = ImageList.new(class_image_filenames)
+        @class_images = ImageList.new(*class_image_filenames)
       end
       
       @segment_width = segment_width
@@ -96,12 +96,12 @@ module Idext
               p_class = Segment.new(@class_images.get_pixels(column*@segment_width,
                                                              row*@segment_height,
                                                              @segment_width,
-                                                             @segment_height)).class
+                                                             @segment_height), @segment_height).class
             end
             data_point = Segment.new(@input_images.get_pixels(column*@segment_width,
                                                               row*@segment_height,
                                                               @segment_width,
-                                                              @segment_height)).to_data_point(s+1, row, column)
+                                                              @segment_height), @segment_height).to_data_point(s+1, row, column)
             (data_point << p_class) if @with_classes
             data << data_point if p_class != -1
           end
