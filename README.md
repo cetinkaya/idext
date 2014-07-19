@@ -13,7 +13,7 @@ Idext is a simple tool to extract tabular data from images. Specifically, data i
  * **exred_mean**, **exgreen_mean**, **exblue_mean**: average of excess color values (exred = 2 red - green - blue)
  * **hue_mean**, **saturation_mean**, **value_mean**: average color of pixels in hue, saturation, value space
 
-Each segment can also be assigned a class. For each image from which data is extracted, user is allowed to supply an class-image to characterize classes in the image. Specifically, user can prepare class-images by painting the parts in the images in red, green, blue, black, or white each of which correspond to a certain class.  
+Each segment can also be assigned a class. For each data-image (image from which data is extracted), user is allowed to supply an additional class-image to characterize classes in the data-image. User can prepare class-images by painting the parts corresponding to classes in the images in red, green, blue, black, or white. Idext understands these colors and assigns classes to segments based on these colors.
 
 Example
 -------
