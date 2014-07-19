@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+begin
+  require "idext"
+  require "optparse"
+rescue LoadError
+  require "rubygems"
+  require "idext"
+  require "optparse"
+end
+
+def system(args)
+  options = {:sep => ",", :output_filename => "data.txt"}
+
+  OptionParser.new do |opts|
+    opts.banner = "Usage: idext [options]"
+
+    opts.on("-i" "--input-image-dir [DIR]",
+            "Directory of all input images.") do |dir|
+      options[:dir] = dir
+    end
+
+    opts.on("-c", "--class-image-dir [DIR]",
+            "Directory of all images that characterize the classes.") do |cdir|
+      options[:cdir] = cdir
+    end
+
+    opts.on("-o", "--output-data-filename [FILENAME]",
+            "Filename for the extracted data (default data.txt).") do |filename|
+      options[:output_filename] = filename
+    end
+
+    opts.on("-s", "--separator [SEP]",
+            "Separator for the columns of data (default ,).") do |sep|
+      options[:sep] = sep
+    end
+  end.parse!(args)
+
+  unless options[:dir]
+    raise "Input image directory is not supplied."
+  end
+
+  if options[:cdir] and options[:dir] == options[:cdir]
+    raise "Input and class image directories should be different."
+  end
+end
+
